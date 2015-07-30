@@ -1,1 +1,218 @@
-Welcome to Chenge's World~
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Coherent Filtering</title>
+    <style type="text/css">
+BODY {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT: 100% "Times New Roman", Times, serif; BACKGROUND: #888888; COLOR: #000; PADDING-TOP: 0px
+}
+.oneColFixCtr #container {
+	BORDER-BOTTOM: #000000 1px solid; TEXT-ALIGN: left; BORDER-LEFT: #000000 1px solid; MARGIN: 0px auto; WIDTH: 1000px; BACKGROUND: #ffffff; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid
+}
+.oneColFixCtr #mainContent {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px
+}
+.style3 {
+	FONT-SIZE: small
+}
+.style5 {
+	FONT-SIZE: large; FONT-WEIGHT: bold
+}
+.style6 {
+	FONT-SIZE: large
+}
+.style7 {
+	TEXT-DECORATION: none
+}
+.style8 {
+	COLOR: #000000
+}
+.style9 {
+	COLOR: #000080
+}
+.style10 {
+	MARGIN-TOP: 5pt; MARGIN-BOTTOM: 5pt; FONT-SIZE: medium
+}
+.style11 {
+	MARGIN-TOP: 5pt; TEXT-INDENT: 15px; MARGIN-BOTTOM: 5pt; FONT-SIZE: medium
+}
+.style12 {
+	MARGIN-LEFT: 12pt; FONT-SIZE: medium; MARGIN-RIGHT: 12pt}
+.code {
+	FONT-FAMILY: "Courier New", Courier, monospace; FONT-SIZE: 15px
+}
+.codeline {
+	MARGIN-TOP: 5pt; TEXT-INDENT: 15px; FONT-FAMILY: "Courier New", Courier, monospace; MARGIN-BOTTOM: 5pt; FONT-SIZE: 15px
+}
+.DivCode {
+	BORDER-BOTTOM: #333 1px dashed; BORDER-LEFT: #333 1px dashed; WIDTH: 800px; BACKGROUND: #ffd; MARGIN-LEFT: 10pt; FONT-SIZE: medium; BORDER-TOP: #333 1px dashed; BORDER-RIGHT: #333 1px dashed
+}
+.auto-style5 {
+	MARGIN-TOP: 3pt; MARGIN-BOTTOM: 3pt; FONT-SIZE: 100%
+}
+.STYLE15 {FONT-SIZE: large; FONT-WEIGHT: bold; color: #FF0000; }
+</style> <meta name="GENERATOR" content="MSHTML 8.00.7601.17744">
+  </head>
+  <body class="oneColFixCtr">
+    <div id="container">
+      <div style="MARGIN-BOTTOM: 0pt" id="mainContent">
+        <h1 style="MARGIN-TOP: 20pt" align="center"><a style="COLOR: #000; TEXT-DECORATION: none">
+            <b style="color: rgb(34, 34, 34); font-family: 'Times New Roman', serif; font-size: 16px; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);"><span
+                style="font-size: 13.5pt; font-family: Arial, sans-serif;">Semantic
+                Grouping in videos based on Normalized Graph Cut&nbsp;</span></b></a></h1>
+        <h1 style="MARGIN-TOP: 0pt" align="center"><a style="COLOR: #000; TEXT-DECORATION: none"><b
+              style="color: rgb(34, 34, 34); font-family: 'Times New Roman', serif; font-size: 20px; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);"><span
+                style="font-size: 13.5pt; font-family: Arial, sans-serif;">&amp;
+                Kanade–Lucas–Tomasi tracking trajectory</span></b></a><span class="style8"><span
+              style="color: #0000ee;"></span></span></h1>
+        <h1 style="MARGIN-TOP: 20pt" align="center">&nbsp; <span style="font-weight: normal;"><span
+              class="style6"
+              style="MARGIN-TOP: 10pt"><span
+                style="text-decoration:">Chenge
+                Li, </span></span><span class="style6" style="MARGIN-TOP: 20pt"></span>
+            <span class="style6" style="MARGIN-TOP: 10pt">Yao Wang </span></span><span
+            class="style6"
+            style="MARGIN-TOP: 20pt"></span></h1>
+        <h4 style="MARGIN-TOP: 5pt" align="center"><span style="font-weight: normal;">New
+            York University, Polytechnic School of Engineering </span></h4>
+      </div>
+      <div class="style12">
+        <h2>1. Motivation</h2>
+        <p align="left">As human can group image segments to obtain meaningful
+          higher-level structure very easily, grouping or clustering objects
+          automatically and meaningfully by machine or computer still remains a
+          challenging problem. Applications such as Crowd Understanding require
+          fast object clustering in real time.In our current research project,
+          we would like to group people by their social behaviors in a dancing
+          party scenario from a video clip captured by a low-resolution fish-eye
+          camera. </p>
+        <table>
+          <tbody>
+            <tr>
+              <td class="mic" align="center"> <img src="./images/motivation.jpg"
+                  align="middle"
+                  height="240px">
+              </td>
+              <td class="mic" align="center"> <img src="./images/000010.jpg" align="middle"
+                  height="240px">
+              </td>
+              <td class="mic" align="center"> <img src="./images/grandcentral.jpg"
+                  align="middle"
+                  height="240px">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p align="center">Figure 1: Group people by their motion. </p>
+        <p align="left">The objectives of this project are </p>
+        1. Clustering objects based on underlying spatial and coherent motion
+        relationship;<br>
+        2. Generate high-level semantic labels in real time.
+        <h3>Demo Videos of semantic clustering: </h3>
+        <br>
+        <table align="center" height="342" border="1" width="200">
+          <tbody>
+            <tr>
+              <td><object data="http://www.youtube.com/v/watch?v=whtvUReqrhU" height="400"
+                  width="400">
+                </object> <br>
+              </td>
+              <td><object data="http://www.youtube.com/v/watch?v=llgi-cdbxC0" height="400"
+                  width="400">
+                </object> <br>
+              </td>
+            </tr>
+            
+                     <tr>
+              <td><object data="http://www.youtube.com/v/watch?v=Z_H4KWxcZSI" height="400"
+                  width="400">
+                </object> <br>
+              </td>
+        
+            </tr>
+        
+          </tbody>
+        </table>
+      </div>
+      <div class="style12">
+        <h2>2. The Technique:</h2>
+        <ul>
+          <li>&nbsp;Use the <span style="font-weight: bold;">KLT tracker</span>
+            to generate feature points’ trajectories information across about
+            200 frames.&nbsp;</li>
+          <li>&nbsp;Find the <span style="font-weight: bold;">invariant
+              neighborhood </span>for each trajectory segment. Within each
+            invariant neighborhood, move every two trajectory segments together
+            by offset, and compare their shape similarity.</li>
+          <li>Treat 5-frame long trajectory segments as an undirected graph G =
+            (V, E) with weighted edges between neighboring nodes defined as: </li>
+          <img src="./images/weight.png" align="middle" height="44"> <br>
+          <li>Using <span style="font-weight: bold;">Normalized Cut </span>proposed
+            by Shi and Malik to get the eigen vectors:</li>
+          <img src="./images/ncut.png" align="middle" height="50"> <br>
+          <p>Such Graph Theory based technique (graph cut) is especially
+            noticeable due to its global optimization, practical efficiency, and
+            applicability to high dimension problems.</p>
+        </ul>
+        <table style="width: 886px; height: 165px;" align="center" border="2">
+          <tbody>
+            <tr height="44">
+              <td style="height: 40px;">Clustering Method 1: Recursive Two-Way
+                N-cut: Bipartition the graph by finding the second smallest
+                eigenvector; recursively repartition the segmented parts if
+                necessary. </td>
+            </tr>
+            <tr height="44">
+              <td style="height: 40px;">Clustering Method 2: Simultaneous K-Way
+                Cut: Using multiple eigenvectgors. Since all eigenvectors of
+                this system is perpendicular to each other. </td>
+            </tr>
+            <tr height="44">
+              <td style="height: 40px;">Clustering Method 3: K-means clustering
+                using N-cut eigenvectors as reduced features: Instead of
+                directly thresholding eigenvectors, forming a reduced feature
+                space using each row from N-cut eigenvectors and cluster by
+                simple methods such as K-means, etc.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="style12">
+        <h2>3. Results and Applications</h2>
+        <table>
+          <tbody>
+            <tr>
+              <td class="mic" align="center"> <img src="./images/nooffresult1.jpg"
+                  height="240px">
+              </td>
+              <td class="mic" align="center"> <img src="./images/trafficresult.jpg"
+                  align="middle"
+                  height="240px">
+              </td>
+              <td class="mic"> <img src="./images/trafficresult2.jpg" height="240px"
+                  width="300px">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="style12">
+        <h2>4. Reference </h2>
+        <blockquote>
+          <p class="DivCode" align="left">Shi, Jianbo, and JitendraMalik.
+            Normalized cuts and image segmentation. Pattern Analysis<br>
+            andMachine Intelligence, IEEE Transactions on 22.8 (2000): 888-905.</p>
+          <p class="DivCode" align="left">Bolei Zhou, Xiaoou Tang, and Xiaogang
+            Wang. "Coherent Filtering :Detecting Coherent Motions from Crowd
+            Clutters." Proceedings of 12th European Conference on Computer
+            Vision (ECCV 2012)&nbsp; </p>
+        </blockquote>
+        <h2>&nbsp;</h2>
+      </div>
+      <div>
+        <p style="MARGIN-TOP: 30px; MARGIN-BOTTOM: 30px" class="style11" align="left">Last
+          update: Oct 1, 2014</p>
+      </div>
+    </div>
+  </body>
+</html>
